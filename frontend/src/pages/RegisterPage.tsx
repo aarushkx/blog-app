@@ -9,17 +9,17 @@ const RegisterPage = () => {
     const { user, loading, refreshUser } = useAuth();
     const navigate = useNavigate();
 
-    if (loading) return null;
-
-    if (user) {
-        return <Navigate to="/feed" replace />;
-    }
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [avatar, setAvatar] = useState<File | null>(null);
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState("");
+
+    if (loading) return null;
+
+    if (user) {
+        return <Navigate to="/feed" replace />;
+    }
 
     const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

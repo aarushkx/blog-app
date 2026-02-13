@@ -15,8 +15,8 @@ const router = express.Router();
 router.post("/create", protect, upload.single("image"), createBlog);
 
 // GET
-router.get("/", getAllBlogs);
-router.get("/:id", getSingleBlog);
+router.get("/", protect, getAllBlogs);
+router.get("/:id", protect, getSingleBlog);
 
 // DELETE
 router.delete("/:id", protect, deleteBlog);

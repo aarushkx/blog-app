@@ -13,6 +13,7 @@ import {
     DialogTrigger,
     DialogClose,
 } from "@/components/ui/dialog";
+import moment from "moment";
 
 interface Blog {
     _id: string;
@@ -21,6 +22,7 @@ interface Blog {
     image?: {
         url: string;
     };
+    createdAt: string;
     user: {
         _id: string;
         email: string;
@@ -108,7 +110,7 @@ const FeedPage = () => {
                 <div key={blog._id} className="space-y-4 border-b pb-6">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                            <Avatar className="h-8 w-8">
+                            <Avatar className="h-9 w-9">
                                 <AvatarImage
                                     src={blog.user?.avatar?.url || ""}
                                 />
@@ -117,9 +119,14 @@ const FeedPage = () => {
                                 </AvatarFallback>
                             </Avatar>
 
-                            <span className="text-sm font-medium">
-                                {blog.user?.email}
-                            </span>
+                            <div className="flex flex-col leading-tight">
+                                <span className="text-sm font-medium">
+                                    {blog.user?.email}
+                                </span>
+                                <span className="text-xs text-muted-foreground">
+                                    {moment(blog.createdAt).format("ll")}
+                                </span>
+                            </div>
                         </div>
 
                         {user?._id === blog.user?._id && (
@@ -162,6 +169,9 @@ const FeedPage = () => {
                             </Dialog>
                         )}
                     </div>
+
+                    {/* Title */}
+                    <h2 className="text-md font-semibold">{blog.title}</h2>
 
                     {/* Image */}
                     {blog.image?.url && (

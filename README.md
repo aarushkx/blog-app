@@ -26,7 +26,7 @@ BASE_URL=http://localhost:8000
 ### frontend/.env
 
 ```
-VITE_API_BASE=http://localhost:8000
+VITE_API_BASE=http://localhost:8000/api/v1
 ```
 
 ## Live

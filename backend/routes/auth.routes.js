@@ -13,7 +13,7 @@ const router = express.Router();
 // POST
 router.post("/register", upload.single("avatar"), register);
 router.post("/login", login);
-router.post("/logout", logout);
+router.post("/logout", protect, logout);
 
 // GET
 router.get("/me", protect, currentUser);
